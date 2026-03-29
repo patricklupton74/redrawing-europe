@@ -4,6 +4,10 @@
 #remove tiny microstates (✓)
 
 import pandas as pd
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+
 
 usecols = ['city','lat','lng','country','population']
 
@@ -29,6 +33,22 @@ european_countries = [
 cities = cities[cities["country"].isin(european_countries)]
 cities = cities.groupby("country").apply(lambda x: x.nlargest(min(len(x), 100), 'population')).reset_index(drop = False)
 cities = cities.drop(columns=['level_1'])
+cities = cities[~cities['city'].isin(['Ciudad de Melilla', 'Ciudad de Ceuta'])]
 cities.to_csv("data/europeancities.csv", index = False)
 #print(cities.head())
 #print(cities.columns)
+
+
+fig, ax = plt.subplots(figsize=(12, 8), subplot_kw={'projection': ccrs.PlateCarree()})
+
+ax.add_feature(cfeature.LAND, facecolor='lightgray')
+ax.add_feature(cfeature.OCEAN, facecolor='lightblue')
+ax.add_feature(cfeature.BORDERS, linestyle='-', linewidth=0.5)
+ax.add_feature(cfeature.COASTLINE, linewidth=0.5)
+
+ax.scatter(cities['lng'], cities['lat'], s=2, color='red', transform=ccrs.PlateCarree())
+
+ax.set_extent([-25, 45, 34, 72])
+
+plt.show()
+
