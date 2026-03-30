@@ -5,7 +5,7 @@ from utils import train_test_split
 cities = pd.read_csv("data/europeancities.csv")
 
 #kNN --------------------------------------------------------------------------------------
-train_size = 0.8
+train_size = 0.2
 pos_training, label_training, pos_input, label_input =train_test_split(cities, train_size)
 
 knn = KNN(5)
