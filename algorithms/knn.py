@@ -1,6 +1,6 @@
 import heapq
 
-def eucDistanceSqaured(point_1, point_2):
+def eucDistanceSquared(point_1, point_2):
     x_squared = (point_1[0] - point_2[0]) ** 2
     y_squared = (point_1[1] - point_2[1]) ** 2
     return (x_squared + y_squared)
@@ -25,11 +25,11 @@ class KNN:
             for city_training in self.pos_training:
                 #push k first training nodes to heap
                 if training_progress < self.k:
-                    heapq.heappush(heap, ((-1) * (eucDistanceSqaured(city_input, self.pos_training[training_progress])), self.label_training[training_progress]))
+                    heapq.heappush(heap, ((-1) * (eucDistanceSquared(city_input, self.pos_training[training_progress])), self.label_training[training_progress]))
                 #check if remaining cities have a smaller distance than the max distance in heap, if so then replace max
                 else:  
-                    if eucDistanceSqaured(city_input, self.pos_training[training_progress]) < (-1) * heap[0][0]:
-                        heapq.heapreplace(heap, ((-1) * eucDistanceSqaured(city_input, self.pos_training[training_progress]), self.label_training[training_progress]))
+                    if eucDistanceSquared(city_input, self.pos_training[training_progress]) < (-1) * heap[0][0]:
+                        heapq.heapreplace(heap, ((-1) * eucDistanceSquared(city_input, self.pos_training[training_progress]), self.label_training[training_progress]))
                 training_progress += 1
             
             #find most common label in heap
