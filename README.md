@@ -4,7 +4,7 @@ WIP — Training ML algorithms from scratch to rediscover European national bord
 
 ## Progress
 - World city data filtered and cleaned to Europe
-- kNN implemented from scratch (~93% accuracy across 38 countries)
+- kNN implemented from scratch (~93% accuracy across ~2500 inputs with a training set size of 614)
 
 ## Data
 City data sourced from SimpleMaps World Cities Database, licensed under CC BY 4.0.
