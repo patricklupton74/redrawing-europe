@@ -4,5 +4,5 @@ Supervised algorithm that classifies each city by majority vote of its k nearest
 
 ## Parameters
 k -> Number of nearest neighbours considered  
-t -> Training set size (e.g. 0.8 = 80% of European city dataset used for training, the rest is used as input)  
+t -> Training set size (e.g. 0.7 = 70% of European city dataset used for training, the rest is used as input)  
 acc -> Measured accuracy for that instance
